@@ -1,40 +1,51 @@
-# Blogging App
+Blogging App
 
-A modern **CRUD-based blogging app** built with **React, TypeScript, and Firebase**. This app allows users to create, read, update, and delete blog posts while handling user authentication with Firebase.
+A modern CRUD-based blogging app built with React, TypeScript, and Firebase. This app allows users to create, read, update, and delete blog posts while handling user authentication with Firebase.
 
-## Features
+Features
 
-✅ User authentication with Firebase (Sign Up, Login, Logout)  
-✅ Create, Read, Update, and Delete (CRUD) blog posts  
-✅ Rich text editor with formatting (bold, bullet points, line spacing)  
-✅ Real-time updates using Firebase Firestore  
-✅ Notifications for new posts  
-✅ SEO-friendly blog posts  
-✅ Responsive design with Tailwind CSS  
+✅ User authentication with Firebase (Sign Up, Login, Logout)✅ Create, Read, Update, and Delete (CRUD) blog posts✅ Rich text editor with formatting (bold, bullet points, line spacing)✅ Real-time updates using Firebase Firestore✅ Responsive design with Tailwind CSS
 
-## Firebase Setup
+Firebase Setup
 
-This template requires **Firebase** to function correctly. You must set up your Firebase project before running the app. Below are the steps to configure Firebase:
+This template requires Firebase to function correctly. You must set up your Firebase project before running the app. Below are the steps to configure Firebase:
 
-### Step 1: Create Firestore Collection
+Step 1: Create Firestore Collections
 
-1. Go to [Firebase Console](https://console.firebase.google.com/).
-2. Navigate to **Firestore Database** and create a new collection named **blogs**.
-3. This collection must have the following fields:
-   - `userId` (string) - The ID of the user who created the blog post.
-   - `content` (string) - The main content of the blog post.
-   - `title` (string) - The title of the blog post.
+You need to create the following collections in Firebase Firestore:
 
-### Step 2: Create Firebase Configuration File
+blogs - Stores blog posts with these fields:
 
-1. In your project’s **src** directory, create a new folder named **config**.
-2. Inside the **config** folder, create a file named **firebaseConfig.ts**.
+userId (string) - The ID of the user who created the blog post.
 
-### Step 3: Configure Firebase
+content (string) - The main content of the blog post.
 
-In **firebaseConfig.ts**, add the following code:
+title (string) - The title of the blog post.
 
-```ts
+createdAt (timestamp) - The creation time of the blog post.
+
+updatedAt (timestamp) - The last update time of the blog post.
+
+users - Stores user profiles with these fields:
+
+uid (string) - Unique user ID from Firebase Authentication.
+
+name (string) - The user's display name.
+
+email (string) - The user's email address.
+
+profilePicture (string) - URL to the user's profile picture.
+
+Step 2: Create Firebase Configuration File
+
+In your project’s src directory, create a new folder named config.
+
+Inside the config folder, create a file named firebaseConfig.ts.
+
+Step 3: Configure Firebase
+
+In firebaseConfig.ts, add the following code:
+
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
@@ -53,50 +64,38 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
-```
 
 Replace the placeholders with your actual Firebase project credentials.
 
-### Step 4: Install Dependencies & Run the App
+Step 4: Install Dependencies & Run the App
 
-1. Install the required dependencies:
-   ```sh
-   npm install  # or yarn install
-   ```
-2. Start the development server:
-   ```sh
-   npm run dev  # or yarn dev
-   ```
+Install the required dependencies:
+
+npm install  # or yarn install
+
+Start the development server:
+
+npm run dev  # or yarn dev
 
 That’s it! Your blogging app is now ready to run. 🚀
 
-## Deployment
+Deployment
 
-To deploy the app on **Vercel**, follow these steps:
+To deploy the app on Vercel, follow these steps:
 
-1. Install Vercel CLI:
-   ```sh
-   npm install -g vercel
-   ```
-2. Login to Vercel:
-   ```sh
-   vercel login
-   ```
-3. Deploy the project:
-   ```sh
-   vercel
-   ```
+Install Vercel CLI:
 
-## Contributing
+npm install -g vercel
+
+Login to Vercel:
+
+vercel login
+
+Deploy the project:
+
+vercel
+
+Contributing
 
 Feel free to contribute! Fork the repo, create a new branch, make your changes, and submit a pull request.
-
-## License
-
-This project is licensed under the MIT License.
-
-## Contact
-
-📧 Email: your.email@example.com  
-🔗 LinkedIn: [Your Name](https://linkedin.com/in/yourname)
 
