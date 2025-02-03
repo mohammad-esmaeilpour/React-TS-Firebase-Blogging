@@ -1,41 +1,44 @@
 import { limit, orderBy, where } from "firebase/firestore";
 import { useParams } from "react-router";
-import TabsLayout from "src/components/shared/TabsLayout";
-import { useRef } from "react";
+import { Fragment, useRef } from "react";
 import { BlogFullList, BlogFullListRef } from "src/components/shared/Blog/BlogFullList";
 import { BlogFullListHeader } from "src/components/shared/Blog/BlogFullListHeader";
+import UploadUserProfile from "./_components/UploadUserProfile";
+import { useUpdateUser } from "src/hooks/user/useUpdateUser";
+import { useReadUser } from "src/hooks/user/useReadUser";
+import UpdatePassword from "./_components/UpdatePassword";
 
 const Profile = () => {
   const params = useParams();
 
   const ref = useRef<BlogFullListRef>(null);
 
-  return (
-    <div>
-      <TabsLayout
-        tabs={[
-          { title: "Profile", link: "/profile" },
-          {
-            title: "Setting",
-            link: "/setting",
-          },
-        ]}
-        url={`/${params.uid}`}
-      >
-        <div className="py-3 sticky top-[102px] border-b bg-white px-10 z-10">
-          <BlogFullListHeader
-            searchQuery={ref.current?.searchQuery!}
-            setFilteredBlogs={ref.current?.setFilteredBlogs!}
-            setSearchQuery={ref.current?.setSearchQuery!}
-          />
-        </div>
+  const { state: userState } = useReadUser(params.uid!);
+  
+  const { dispatch, state, submitUpdateUser } = useUpdateUser(userState?.data!);
 
-        <BlogFullList
-          ref={ref}
-          filterQuery={[orderBy("create_time", "desc"), limit(6), where("user_id", "==", params.uid)]}
+  return (
+    <Fragment>
+      <div className="bg-white">
+        <div className="p-10 gap-20 flex flex-col max-w-[1440px] mx-auto items-center">
+          <UploadUserProfile submitProfile={submitUpdateUser} dispatch={dispatch} state={state} />
+          <UpdatePassword />
+        </div>
+      </div>
+
+      <div className="py-4 border-b bg-white px-10 z-10">
+        <BlogFullListHeader
+          searchQuery={ref.current?.searchQuery!}
+          setFilteredBlogs={ref.current?.setFilteredBlogs!}
+          setSearchQuery={ref.current?.setSearchQuery!}
         />
-      </TabsLayout>
-    </div>
+      </div>
+
+      <BlogFullList
+        ref={ref}
+        filterQuery={[orderBy("create_time", "desc"), limit(6), where("user_id", "==", params.uid)]}
+      />
+    </Fragment>
   );
 };
 

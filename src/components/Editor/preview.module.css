@@ -1,0 +1,20 @@
+.content a {
+    color: rgb(0, 89, 255);
+    text-decoration: underline;
+}
+
+
+.content ul {
+    list-style: circle;
+    list-style-position: inside;
+    list-style-type: disc;
+  padding-left: 20px; /* Adjusts the left padding to make space for bullets */
+
+}
+
+
+.content ul li {
+  text-indent: -20px; /* Moves first line back to align with the bullet */
+  padding-left: 20px; /* Ensures the text after the first line aligns properly */
+
+}

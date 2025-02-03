@@ -4,11 +4,11 @@ import { auth } from "src/config/firebaseConfig";
 import { createBlog } from "src/services/blog/createBlog";
 import { errorToast, successToast } from "src/utils/Toast";
 import { fetchingReducer } from "src/reducers/fetchingReducer";
-import { fetchingStates } from "src/states/states";
+import { submitStates } from "src/states/states";
 import { TCreateBlogState } from "src/types/states";
 
 export const useCreateBlog = () => {
-  const [state, dispatch] = useReducer(fetchingReducer<TCreateBlogState>, fetchingStates<TCreateBlogState>());
+  const [state, dispatch] = useReducer(fetchingReducer<TCreateBlogState>, submitStates<TCreateBlogState>());
 
   const navigate = useNavigate();
 

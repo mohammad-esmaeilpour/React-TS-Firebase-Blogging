@@ -8,6 +8,14 @@ export const fetchingStates = <T>(): TFetchingStates<T> => {
   };
 };
 
+export const submitStates = <T>(): TFetchingStates<T> => {
+  return {
+    loading: false,
+    error: null,
+    data: null,
+  };
+};
+
 export const fetchingStatesWithLoadMore = <T>(): TFetchingWithLoadMore<T> => {
   return { ...fetchingStates(), loadMoreLoading: false, blogsPerPage: 6, page: 1 };
 };

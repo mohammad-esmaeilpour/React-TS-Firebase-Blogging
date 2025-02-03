@@ -2,6 +2,7 @@ import hljs from "highlight.js";
 import { Image01Icon } from "hugeicons-react";
 import { useEffect, useRef } from "react";
 import { TCreateBlogState, TFetchingStates } from "src/types/states";
+import styles from "./Preview.module.css";
 
 type Props = {
   state: TFetchingStates<TCreateBlogState>;
@@ -16,7 +17,7 @@ const Preview = ({ state }: Props) => {
         hljs.highlightBlock(block as HTMLElement);
       });
     }
-  }, [state.data?.content]); 
+  }, [state.data?.content]);
 
   return (
     <div className="relative">
@@ -30,7 +31,7 @@ const Preview = ({ state }: Props) => {
 
       <h1 className="mb-12 mt-16 px-10 first-letter:uppercase">{state.data?.title}</h1>
       <div
-        className="whitespace-pre-wrap px-10 leading-7"
+        className={`whitespace-pre-wrap px-10 leading-7 ${styles.content}`}
         ref={previewRef}
         dangerouslySetInnerHTML={{ __html: state.data?.content || "" }} // Fallback for empty content
       />

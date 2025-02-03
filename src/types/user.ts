@@ -3,5 +3,5 @@ export type TUser = {
   uid: string;
   id: string;
   email: string;
-  img: string;
+  img: string | null;
 };

@@ -30,7 +30,7 @@ const BlogCard = ({ blog }: Props) => {
         </div>
 
         <UserProfileCard
-          img={state.data?.img}
+          img={state.data?.img as string}
           error={state.error}
           loading={state.loading}
           user_email={blog.user_email}

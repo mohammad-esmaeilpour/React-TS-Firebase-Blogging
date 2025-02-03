@@ -3,10 +3,11 @@ export type TAboutData = {
   description: string;
   list: {
     title: string;
-    list: string[];
+    description: string;
+    list: { key: string; value: string }[];
   }[];
   about: {
-    title:string;
+    title: string;
     first_description: string;
     second_description: string;
   };

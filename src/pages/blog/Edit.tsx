@@ -9,6 +9,7 @@ import Preview from "src/components/editor/Preview";
 import { useReadBlog } from "src/hooks/blog/useReadBlog";
 import { useUpdateBlog } from "src/hooks/blog/useUpdateBlog";
 import RenderState from "src/components/shared/RenderState";
+import BlogBannerUploader from "./_components/BlogBannerUploader";
 
 const EditBlog = () => {
   const params = useParams();
@@ -27,7 +28,7 @@ const EditBlog = () => {
         <form onSubmit={handleSubmit(submitUpdateBlog)} className="w-screen max-w-[1440px] mx-auto">
           <div className="grid grid-cols-12 relative pt-10 gap-10 items-start">
             <div className="col-span-8 bg-white border rounded-xl">
-              {/* <ImageUploader dispatch={updateDispatch} state={updateStates} /> */}
+              <BlogBannerUploader dispatch={updateDispatch} state={updateStates} />
 
               <BlogEditor dispatch={updateDispatch} state={updateStates} />
             </div>
